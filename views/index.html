@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% require 'timer.html' as Timer %}
+{% require 'input.html' as emailInput %}
+
+{% block reactBody %}
+var now = Date.now();
+
+return (
+<div>
+    <Timer start={now} />
+    <emailInput />
+</div>
+);
+{% endblock %}
