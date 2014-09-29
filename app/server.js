@@ -2,7 +2,8 @@ var swig = require('swig'),
     reactTag = require('../reactTag')(swig),
     port = 8008;
 
-var app = require('express')(),
+var express = require('express')
+    app = express(),
     swig = require('swig');
 
 app.engine('html', swig.renderFile);
@@ -17,6 +18,7 @@ swig.setDefaults({
     cache: false
 });
 
+app.use(express.static('./bower_components/'));
 app.get('/', function(req, res) {
     res.render('index');
 });
