@@ -1,12 +1,25 @@
 var swig = require('swig'),
-    React = require('react'),
     reactTag = require('./reactTag')(swig),
-    viewDir = __dirname + '/views';
+    port = 8008;
 
+var app = require('express')(),
+    swig = require('swig');
+
+app.engine('html', swig.renderFile);
+
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+
+// NOTE: You should always cache templates in a production environment.
+// Don't leave both of these set to `false` in production!
+app.set('view cache', false);
 swig.setDefaults({
-    loader: swig.loaders.fs(viewDir)
+    cache: false
 });
 
-var reactPage = swig.compileFile(viewDir + '/index.html')();
+app.get('/', function(req, res) {
+    res.render('index');
+});
 
-console.log(reactPage);
+app.listen(port);
+console.log('React-swig started on http://localhost:%s/', port);

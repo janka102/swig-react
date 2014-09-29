@@ -1,23 +1,25 @@
 exports.compile = function compile(compiler, args, content, parents, opts, blockName) {
     var file = args.shift(),
         componentName = args.shift(),
-        parentFile = (args.shift() || '').replace(/\\/g, '\\\\'),
+        parentFile = (args.pop() || '').replace(/\\/g, '\\\\'),
         output = [
             // 'console.log(\'\\nREQUIRE: ' + componentName + '\\n\');\n',
             'var react = _fn.React = _fn.React || {};\n',
-            'var components = _fn.React.components = _fn.React.components || {};\n',
+            'var components = react.components = react.components || {};\n',
 
             'components[' + componentName + '] = null;\n',
             'react.currentComponent = _ctx.__reactComponentName = ' + componentName + ';\n',
             // 'console.log(_ctx, react);\n',
-            '_swig.compileFile(' + file + ')(_ctx);\n',
+            '_swig.compileFile(' + file + ', {\n',
+            '   resolveFrom: "' + parentFile + '"\n' +
+            '})(_ctx);\n',
             'react.currentComponent = null; delete _ctx.__reactComponentName;\n'
         ].join('');
 
     return output;
 }
 
-exports.parse = function parse(str, line, parser, types, opts, swig) {
+exports.parse = function parse(str, line, parser, types, stack, opts) {
     var file,
         componentName;
 
@@ -63,6 +65,8 @@ exports.parse = function parse(str, line, parser, types, opts, swig) {
         if (!componentName) {
             this.out.push('"' + file.split('/').slice(-1)[0].split('.')[0] + '"');
         }
+
+        this.out.push(opts.filename || null);
     });
 
     return true;
