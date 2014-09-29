@@ -21,5 +21,6 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-app.listen(port);
-console.log('React-swig started on http://localhost:%s/', port);
+app.listen(port, function() {
+    console.log('React-swig started on http://localhost:%s/', port);
+});
