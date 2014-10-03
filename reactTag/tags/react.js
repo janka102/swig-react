@@ -17,7 +17,7 @@ exports.compile = function compile(compiler, args, content, parents, opts, block
         return output.join('');
     }
 
-    var componentName = '"' + opts.filename.split('/').slice(-1)[0].split('.')[0] + '"';
+    var componentName = '"_' + opts.filename.split('/').slice(-1)[0].split('.')[0] + '"';
 
     output.push(
         'var react = _fn.React = _fn.React || {};\n',
