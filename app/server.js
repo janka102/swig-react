@@ -24,6 +24,10 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
+app.get('*', function(req, res) {
+    res.render('404');
+});
+
 app.listen(port, function() {
     console.log('React-swig started on http://localhost:%s/', port);
 });
