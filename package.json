@@ -1,6 +1,7 @@
 {
     "name": "swig-react",
     "version": "0.0.1",
+    "description": "Swig extensions to write react components using swig tags",
     "private": true,
     "dependencies": {
         "react": "~0.11.2",
