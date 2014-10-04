@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
-{% reactadd 'components/timer.html' as Timer %}
-{% reactadd 'components/input.html' as ReverseInput %}
+{% reactuse 'components/timer.html' as Timer %}
+{% reactuse 'components/input.html' as ReverseInput %}
 
 {% block reactBody %}
 var now = Date.now();
@@ -18,11 +18,11 @@ return (
         </p>
     </div>
     <div className="row marketing">
-        <div className="col-lg-6">
+        <div className="col-sm-6">
             <h4>Timer example</h4>
             <Timer start={now} />
         </div>
-        <div className="col-lg-6">
+        <div className="col-sm-6">
             <h4>Input example</h4>
             <ReverseInput />
         </div>
