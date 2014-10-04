@@ -22,7 +22,7 @@
         "express": "~4.9.5"
     },
     "scripts": {
-        "start": "node server"
+        "start": "node app/server"
     },
     "license": "GPLv3",
     "repository": {
