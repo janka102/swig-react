@@ -20,12 +20,12 @@ switch(true) {
         time = Math.round(timeElapsed / 1000);
         postFix = 'second' + (time === 1 ? '' : 's');
         break;
-    case timeElapsed < 60 * 60 * 1000:
-        time = (timeElapsed / 60 * 1000).toFixed(2);
+    case timeElapsed < (60 * 60 * 1000):
+        time = (timeElapsed / (60 * 1000)).toFixed(1);
         postFix = 'minute' + (time === '1.00' ? '' : 's');
         break;
     default:
-        time = (timeElapsed / 60 * 60 * 1000).toFixed(3);
+        time = (timeElapsed / (60 * 60 * 1000)).toFixed(2);
         postFix = 'hour' + (time === '1.000' ? '' : 's');
         break;
 }
