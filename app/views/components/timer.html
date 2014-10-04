@@ -1,25 +1,40 @@
 {% react getInitialState %}
-    return { elapsed: 0 };
+return { elapsed: '0 seconds' };
 {% endreact %}
 
 {% react componentDidMount %}
-    this.timer = setInterval(this.tick, 50);
+this.timer = setInterval(this.tick, 500);
 {% endreact %}
 
 {% react componentWillUnmount %}
-    clearInterval(this.timer);
+clearInterval(this.timer);
 {% endreact %}
 
 {% react tick %}
-    this.setState({elapsed: new Date() - this.props.start});
+var timeElapsed = new Date() - this.props.start,
+    time,
+    postFix;
+
+switch(true) {
+    case timeElapsed < 60000:
+        time = Math.round(timeElapsed / 1000);
+        postFix = 'second' + (time === 1 ? '' : 's');
+        break;
+    case timeElapsed < 600000:
+        time = (timeElapsed / 60000).toFixed(2);
+        postFix = 'minute' + (time === '1.00' ? '' : 's');
+        break;
+    default:
+        time = (timeElapsed / 600000).toFixed(3);
+        postFix = 'hour' + (time === '1.000' ? '' : 's');
+        break;
+}
+
+this.setState({elapsed: time + ' ' + postFix});
 {% endreact %}
 
 {% react render %}
-var elapsed = Math.round(this.state.elapsed / 100);
-
-var seconds = (elapsed / 10).toFixed(1);    
-
 return (
-    <p>This component started <b>{seconds} seconds</b> ago.</p>
+    <p>This component started <b>{this.state.elapsed}</b> ago.</p>
 );
 {% endreact %}
