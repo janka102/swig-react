@@ -1,10 +1,9 @@
-var swig = require('swig'),
-    reactTag = require('../reactTag')(swig),
-    port = 3000;
-
 var express = require('express')
     app = express(),
-    swig = require('swig');
+    swig = require('swig'),
+    port = 3000;
+
+require('../reactTag')(swig);
 
 app.engine('html', swig.renderFile);
 
