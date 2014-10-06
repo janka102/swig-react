@@ -29,5 +29,5 @@
         "type": "git",
         "url": "http://github.com/janka102/swig-react.git"
     },
-    "main": "reactTag"
+    "main": "index"
 }
