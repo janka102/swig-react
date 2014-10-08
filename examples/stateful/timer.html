@@ -1,0 +1,19 @@
+{% react getInitialState %}
+return {secondsElapsed: 0};
+{% endreact %}
+
+{% react tick %}
+this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+{% endreact %}
+
+{% react componentDidMount %}
+this.interval = setInterval(this.tick, 1000);
+{% endreact %}
+
+{% react componentWillUnmount %}
+clearInterval(this.interval);
+{% endreact %}
+
+{% react render %}
+<div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+{% endreact %}

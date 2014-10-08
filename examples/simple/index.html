@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Component</title>
+    </head>
+    <body>
+        <script src="http://fb.me/react-0.11.2.js"></script>
+        <!-- From http://facebook.github.io/react/ -->
+        {% reactuse './simple.html' as HelloMessage %}
+        {% react render %}
+            <HelloMessage name="John" />
+        {% endreact %}
+    </body>
+</html>
