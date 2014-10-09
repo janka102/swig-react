@@ -5,23 +5,20 @@ Swig extensions to write react components using swig tags
 ### Basic example
 #### React component swig file
 ```html
-{# ButtonIcon.html #}
+{# hello.html #}
 
 {% react render %}
-var icon = 'icon' + this.props.icon;
-return (
-    <button className={icon}>{this.props.children}</button>
-);
+    <div>Hello, {this.props.name}!</div>
 {% endreact %}
 ```
 #### Template swig file
 ```html
 {# index.html #}
 <!DOCTYPE html>
-{% reactuse "./ButtonIcon.html" as Icon %}
+{% reactuse "./hello.html" as Hello %}
 
 {% react render %}
-<Icon icon="download">Download Node.JS</Icon>
+<Hello name="John" />
 {% endreact %}
 ```
 
@@ -29,17 +26,25 @@ return (
 ```html
 <!DOCTYPE html>
 
-<button class="icon-download" data-reactid="...">Download Node.JS</button>
+<div data-react-render-id="...">
+    <div data-reactid="..." data-react-checksum="..."><span data-reactid="...">Hello, </span><span data-reactid="...">John</span><span data-reactid="...">!</span>
+</div>
 <script>
-var _Icon = React.creatClass({
-    render: function() {
-        var icon = 'icon' + this.props.icon;
+var Hello = React.createClass({
+    render: function render() {
         return (
-            <button className={icon}>{this.props.children}</button>
+            React.DOM.div(null, "Hello, ", this.props.name, "!")
         );
     }
-})
-</script>
+});
+var _index = React.createClass({
+render: function render() {
+    return (
+        Hello({name: "John"})
+        );
+    }
+});
+React.renderComponent(_index(null), document.querySelector('[data-react-render-id="..."]'));
 ```
 
 
