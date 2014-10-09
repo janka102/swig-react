@@ -3,7 +3,8 @@ var express = require('express'),
     swig = require('swig'),
     path = require('path'),
     fs = require('fs'),
-    port = 3000;
+    port = 3000,
+    allExamples;
 
 // swig-react-tags
 require('../index')(swig);
@@ -20,24 +21,24 @@ swig.setDefaults({
     cache: false
 });
 
+function getDirectories(folder) {
+    return fs.readdirSync(folder).filter(function(file) {
+        return file[0] != '.' && fs.statSync(path.join(folder, file)).isDirectory();
+    });
+}
+
+allExamples = getDirectories(__dirname);
+
 app.get('/', function(req, res) {
     res.render('index', {
-        examples: getDirectories('.')
+        examples: allExamples
     });
 });
 
 app.get('/:example', function(req, res) {
-    var file = path.join(req.param('example'), 'views', 'index.html');
-
-    res.render(file);
+    res.render(path.join(req.param('example'), 'views', 'index.html'));
 });
 
 app.listen(port, function() {
     console.log('Example started on http://localhost:%d/', port);
 });
-
-function getDirectories(folder) {
-    return fs.readdirSync(folder).filter(function(file) {
-        return file[0] != '.' && fs.statSync(file).isDirectory();
-    });
-}
