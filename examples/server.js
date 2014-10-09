@@ -36,7 +36,12 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:example', function(req, res) {
-    res.render(path.join(req.param('example'), 'views', 'index.html'));
+    if (allExamples.indexOf(req.param('example')) !== -1) {
+        res.render(path.join(req.param('example'), 'views', 'index.html'));
+    } else {
+        res.status(404).end();
+    }
+    
 });
 
 app.listen(port, function() {
