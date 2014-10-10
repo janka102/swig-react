@@ -27,8 +27,7 @@ Swig extensions to write react components using swig tags
 <!DOCTYPE html>
 
 <div data-react-render-id="...">
-    <div data-reactid="..." data-react-checksum="..."><span data-reactid="...">Hello, </span><span data-reactid="...">John</span><span data-reactid="...">!</span>
-</div>
+    <div data-reactid="..." data-react-checksum="..."><span data-reactid="...">Hello, </span><span data-reactid="...">John</span><span data-reactid="...">!</span></div>
 <script>
 var Hello = React.createClass({
     render: function render() {
@@ -45,6 +44,8 @@ render: function render() {
     }
 });
 React.renderComponent(_index(null), document.querySelector('[data-react-render-id="..."]'));
+</script>
+</div>
 ```
 
 
