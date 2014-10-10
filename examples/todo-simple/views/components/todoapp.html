@@ -1,0 +1,27 @@
+{% reactuse './todolist.html' as TodoList %}
+
+{% react getInitialState %}
+    return {items: [], text: ''};
+{% endreact %}
+
+{% react onChange(e) %}
+    this.setState({text: e.target.value});
+{% endreact %}
+
+{% react handleSubmit(e) %}
+    e.preventDefault();
+    var nextItems = this.state.items.concat([this.state.text]);
+    var nextText = '';
+    this.setState({items: nextItems, text: nextText});
+{% endreact %}
+
+{% react render %}
+    <div>
+        <h3>TODO</h3>
+        <TodoList items={this.state.items} />
+        <form onSubmit={this.handleSubmit}>
+            <input onChange={this.onChange} value={this.state.text} />
+            <button>{'Add #' + (this.state.items.length + 1)}</button>
+        </form>
+    </div>
+{% endreact %}

@@ -1,0 +1,7 @@
+{% react createItem(itemText) %}
+    return <li>{itemText}</li>;
+{% endreact %}
+
+{% react render %}
+    <ul>{this.props.items.map(this.createItem)}</ul>
+{% endreact %}
