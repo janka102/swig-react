@@ -1,6 +1,6 @@
 {
     "name": "swig-react",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "Jesse Smick",
     "description": "Swig extensions to write react components using swig tags",
     "keywords": [
