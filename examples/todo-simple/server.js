@@ -1,4 +1,4 @@
-var express = require('express')
+var express = require('express'),
     app = express(),
     swig = require('swig'),
     path = require('path'),
