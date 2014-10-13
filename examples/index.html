@@ -31,11 +31,11 @@
     </div>
     <div class="container content">
         <div class="list-group">
-            {% for example in examples %}
+        {% for example in examples %}
             <a href="/{{ example }}" class="list-group-item">
                 <h4 class="list-group-item-heading">{{ example|title }}</h4>
             </a>
-            {% endfor %}
+        {% endfor %}
         </div>
     </div>
 </body>
