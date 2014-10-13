@@ -27,6 +27,7 @@ function getDirectories(folder) {
     });
 }
 
+// All individual examples are just subdirectories
 allExamples = getDirectories(__dirname);
 
 app.get('/', function(req, res) {
@@ -35,11 +36,11 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/:example', function(req, res) {
+app.get('/:example', function(req, res, next) {
     if (allExamples.indexOf(req.param('example')) !== -1) {
         res.render(path.join(req.param('example'), 'views', 'index.html'));
     } else {
-        res.status(404).end();
+        next();
     }
 });
 
